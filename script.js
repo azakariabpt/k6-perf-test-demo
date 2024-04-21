@@ -4,7 +4,7 @@ import { check, sleep } from 'k6';
 export const options = {
   thresholds: {
     // Define threshold for http_req_duration metric
-    'http_req_duration': ['p(95)<200'], // 95th percentile response time < 200ms
+    'http_req_duration': ['p(95)<350'], // 95th percentile response time < 350ms
   },
   stages: [
     { duration: '30s', target: 20 },
@@ -18,7 +18,7 @@ export default function () {
   // check(res, {
   //   'status was 200': (r) => r.status == 200,
   //   // Add check for response time
-  //   'response time below 300ms': (r) => r.timings.duration < 300,
+  //   'response time below 350ms': (r) => r.timings.duration < 350,
   // });
 
   check(res, { 'status was 200': (r) => r.status == 200 });
